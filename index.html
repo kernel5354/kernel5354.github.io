@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黑料大赛吃瓜网-黑料大赛吃瓜热点_吃瓜网黑料大赛合集_热门黑料爆料围观</title>
+<meta name="description" content="黑料大赛吃瓜网汇集热门黑料大赛吃瓜内容，按事件分区整理围观看点、爆料脉络与网友讨论，提供清晰的吃瓜入口与热点浏览路径。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23141823'/%3E%3Ccircle cx='32' cy='30' r='13' fill='none' stroke='%23ff5d73' stroke-width='4'/%3E%3Cpath d='M22 44h20' stroke='%23ffc94d' stroke-width='4' stroke-linecap='round'/%3E%3Ccircle cx='27' cy='28' r='2.4' fill='%23ff5d73'/%3E%3Ccircle cx='37' cy='28' r='2.4' fill='%23ff5d73'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0f1219;
+  --panel:#171c26;
+  --panel2:#1e2533;
+  --line:#2a3346;
+  --text:#e8ecf4;
+  --muted:#98a3b8;
+  --hot:#ff5d73;
+  --gold:#ffc94d;
+  --mint:#4fd1a5;
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.wrap{width:min(1120px,92vw);margin:0 auto}
+
+/* 顶部 */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(15,18,25,.88);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;letter-spacing:.5px;white-space:nowrap}
+.logo .mark{
+  width:36px;height:36px;border-radius:11px;
+  background:linear-gradient(145deg,#ff5d73,#b3263b);
+  display:grid;place-items:center;flex:none;
+  box-shadow:0 6px 18px rgba(255,93,115,.25);
+}
+.nav{display:flex;gap:6px;flex-wrap:wrap}
+.nav a{
+  font-size:13.5px;color:var(--muted);padding:6px 11px;border-radius:9px;
+  transition:.2s;
+}
+.nav a:hover,.nav a:focus-visible{color:var(--text);background:var(--panel2)}
+.nav a.cta{background:var(--hot);color:#fff;font-weight:600}
+.nav a.cta:hover{background:#ff7588}
+.menu-btn{display:none;background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:7px 11px;font-size:13px}
+
+/* 首屏 */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before{
+  content:"";position:absolute;inset:-40% -10% auto -10%;height:520px;
+  background:radial-gradient(600px 300px at 20% 20%,rgba(255,93,115,.22),transparent 70%),
+             radial-gradient(500px 280px at 85% 10%,rgba(255,201,77,.16),transparent 70%);
+  pointer-events:none;
+}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;padding:56px 0 48px;align-items:center}
+.tag{
+  display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--gold);
+  border:1px solid rgba(255,201,77,.35);background:rgba(255,201,77,.08);
+  padding:4px 11px;border-radius:999px;margin-bottom:16px;
+}
+.tag .dot{width:6px;height:6px;border-radius:50%;background:var(--hot);box-shadow:0 0 0 3px rgba(255,93,115,.2)}
+h1{font-size:clamp(26px,3.6vw,42px);line-height:1.28;letter-spacing:.5px;font-weight:800}
+h1 em{font-style:normal;color:var(--hot)}
+.hero-desc{margin-top:16px;color:var(--muted);font-size:15px;max-width:34em}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600;
+  padding:11px 20px;border-radius:12px;border:1px solid transparent;transition:.2s;cursor:pointer;
+}
+.btn-main{background:var(--hot);color:#fff;box-shadow:0 8px 22px rgba(255,93,115,.28)}
+.btn-main:hover{background:#ff7588;transform:translateY(-1px)}
+.btn-ghost{background:var(--panel2);border-color:var(--line);color:var(--text)}
+.btn-ghost:hover{border-color:#3e4a63}
+.btn[aria-disabled="true"]{opacity:.55;pointer-events:none}
+.hero-stats{display:flex;gap:26px;margin-top:30px;flex-wrap:wrap}
+.hero-stats div{font-size:12.5px;color:var(--muted)}
+.hero-stats strong{display:block;font-size:20px;color:var(--text);font-weight:800}
+
+/* 首屏视觉卡 */
+.hero-visual{
+  position:relative;background:linear-gradient(160deg,#1d2433,#141822);
+  border:1px solid var(--line);border-radius:22px;padding:22px;
+  box-shadow:0 24px 60px rgba(0,0,0,.45);
+}
+.hero-visual .vhead{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:14px}
+.vlist{display:flex;flex-direction:column;gap:10px}
+.vitem{
+  display:flex;gap:11px;align-items:center;background:#121722;border:1px solid #232c3d;
+  border-radius:12px;padding:10px 12px;
+}
+.vitem .rank{font-size:12px;font-weight:800;color:var(--gold);width:20px;flex:none}
+.vitem .t{font-size:13px;line-height:1.5;flex:1}
+.vitem .h{font-size:11px;color:var(--hot);background:rgba(255,93,115,.12);padding:2px 7px;border-radius:6px;flex:none}
+
+/* 通用区块 */
+section{padding:56px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:28px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(20px,2.4vw,26px);font-weight:800;letter-spacing:.3px}
+.sec-head p{color:var(--muted);font-size:14px;max-width:40em;margin-top:6px}
+.sec-head .more{font-size:13.5px;color:var(--gold);border-bottom:1px dashed rgba(255,201,77,.4);padding-bottom:2px}
+
+/* 卡片网格 */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px;display:flex;flex-direction:column;gap:10px;transition:.22s;
+}
+.card:hover{border-color:#3b465e;transform:translateY(-2px)}
+.card .kicker{font-size:11.5px;color:var(--mint);letter-spacing:.6px}
+.card h3{font-size:16px;font-weight:700;line-height:1.5}
+.card p{font-size:13.5px;color:var(--muted);line-height:1.72}
+.card .meta{font-size:12px;color:#6f7c94;margin-top:auto;padding-top:6px;border-top:1px dashed #252e40}
+
+/* 分区列表（栏目） */
+.split{display:grid;grid-template-columns:1.4fr .6fr;gap:26px;align-items:start}
+.list{display:flex;flex-direction:column;gap:12px}
+.row{
+  display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:center;
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;transition:.2s;
+}
+.row:hover{border-color:#3b465e;background:#1a202c}
+.row .no{font-size:15px;font-weight:800;color:#4a5670;text-align:center}
+.row h3{font-size:14.5px;font-weight:700}
+.row p{font-size:12.5px;color:var(--muted);margin-top:2px}
+.row .badge{font-size:11.5px;padding:3px 9px;border-radius:7px;background:rgba(79,209,165,.12);color:var(--mint);white-space:nowrap}
+
+/* 侧栏 */
+.side{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;position:sticky;top:78px}
+.side h3{font-size:15px;font-weight:800;margin-bottom:12px}
+.side .tags{display:flex;flex-wrap:wrap;gap:8px}
+.side .tags span{font-size:12.5px;color:var(--muted);background:var(--panel2);border:1px solid var(--line);padding:4px 10px;border-radius:8px}
+.side .note{font-size:12.5px;color:var(--muted);margin-top:14px;padding-top:14px;border-top:1px dashed #252e40;line-height:1.7}
+
+/* 搜索 */
+.searchbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.searchbar input{
+  flex:1;min-width:200px;background:#121722;border:1px solid var(--line);color:var(--text);
+  border-radius:12px;padding:11px 15px;font-size:14px;outline:none;font-family:inherit;
+}
+.searchbar input:focus{border-color:var(--hot)}
+.searchbar button{border:none}
+
+/* 深度正文 */
+.prose{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.prose h2{font-size:20px;font-weight:800;margin-bottom:12px;grid-column:1/-1}
+.prose h3{font-size:15px;font-weight:700;margin:0 0 8px;color:var(--gold)}
+.prose p{font-size:14px;color:#c3cbdb;line-height:1.85}
+.prose blockquote{
+  grid-column:1/-1;border-left:3px solid var(--hot);background:#121722;border-radius:0 12px 12px 0;
+  padding:14px 18px;font-size:14px;color:var(--muted);
+}
+
+/* 下载条 */
+.download{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  background:linear-gradient(120deg,#1d2433,#161b26);border:1px solid var(--line);
+  border-radius:var(--radius);padding:26px 28px;
+}
+.download h2{font-size:19px;font-weight:800}
+.download p{font-size:13.5px;color:var(--muted);margin-top:6px;max-width:36em}
+
+/* 页尾 */
+footer{border-top:1px solid var(--line);background:#0c0f15;padding:36px 0 26px;margin-top:20px}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:28px}
+.foot-brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;margin-bottom:10px}
+.foot-brand .mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(145deg,#ff5d73,#b3263b);display:grid;place-items:center;flex:none}
+footer p,footer a{font-size:13px;color:var(--muted)}
+footer h4{font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:10px}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+footer a:hover{color:var(--gold)}
+.foot-bottom{margin-top:26px;padding-top:16px;border-top:1px solid #1a2130;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12.5px;color:#6b778e}
+
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;padding:40px 0 36px;gap:28px}
+  .grid{grid-template-columns:1fr 1fr}
+  .split{grid-template-columns:1fr}
+  .side{position:static}
+  .prose{grid-template-columns:1fr;padding:24px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  .nav{display:none}
+  .nav.open{display:flex;position:absolute;top:100%;left:0;right:0;background:#121722;border-bottom:1px solid var(--line);padding:12px 4vw;flex-direction:column}
+  .menu-btn{display:block}
+  .topbar-inner{position:relative}
+  .grid{grid-template-columns:1fr}
+  .row{grid-template-columns:36px 1fr;gap:10px}
+  .row .badge{grid-column:2;justify-self:start}
+  .foot-grid{grid-template-columns:1fr}
+  section{padding:40px 0}
+  .hero-stats{gap:18px}
+  .logo{font-size:15px}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a href="#top" class="logo" aria-label="黑料大赛吃瓜网首页">
+      <span class="mark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="11" r="6.4" stroke="#fff" stroke-width="2"/>
+          <circle cx="9.8" cy="10.4" r="1.2" fill="#fff"/>
+          <circle cx="14.2" cy="10.4" r="1.2" fill="#fff"/>
+          <path d="M8.5 17.5h7" stroke="#ffc94d" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      黑料大赛吃瓜网
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">菜单</button>
+    <nav class="nav" id="nav" aria-label="主导航">
+      <a href="#hot">热门吃瓜</a>
+      <a href="#board">黑料榜单</a>
+      <a href="#howto">围观方式</a>
+      <a href="#faq">常见疑问</a>
+      <a href="#download" class="cta">下载</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="tag"><span class="dot"></span>吃瓜热点 · 围观现场</span>
+        <h1>黑料大赛吃瓜网</h1>
+        <p class="hero-desc">这里把散落在各处的黑料大赛吃瓜内容按事件聚拢：谁在爆料、看点在哪里、讨论走到了哪一步，都用一段话讲清楚，点开就能跟上节奏。</p>
+        <div class="hero-actions">
+          <a class="btn btn-main" href="#hot">进入热门吃瓜
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#board">查看黑料榜单</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>6</strong>个吃瓜分区</div>
+          <div><strong>每日</strong>滚动更新</div>
+          <div><strong>来源</strong>标注可查</div>
+        </div>
+      </div>
+
+      <aside class="hero-visual" aria-label="吃瓜热榜速览">
+        <div class="vhead"><span>吃瓜热榜 · 速览</span><span>实时围观</span></div>
+        <div class="vlist">
+          <div class="vitem"><span class="rank">01</span><span class="t">某综艺录制现场冲突，双方说法不一</span><span class="h">热</span></div>
+          <div class="vitem"><span class="rank">02</span><span class="t">品牌合作翻车，评论区先炸后删</span><span class="h">爆</span></div>
+          <div class="vitem"><span class="rank">03</span><span class="t">网红直播间口误，连夜发布说明</span><span class="h">议</span></div>
+          <div class="vitem"><span class="rank">04</span><span class="t">旧访谈被翻出，吃瓜网友对照时间线</span><span class="h">翻</span></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 热门吃瓜 -->
+  <section id="hot">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>热门吃瓜现场</h2>
+          <p>按事件而不是按时间堆叠，每张卡片只回答三件事：发生了什么、争议点在哪、目前停留在什么阶段。黑料大赛吃瓜网的内容以公开讨论为基础，未证实的部分会标明。</p>
+        </div>
+        <a class="more" href="#board">全部榜单</a>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <span class="kicker">现场 · 综艺</span>
+          <h3>录制现场起争执，剪辑版本成焦点</h3>
+          <p>节目组未公开完整素材，双方各有一段说法流出。围观重点不在谁对谁错，而在时间线能否对上，吃瓜网友正逐帧比对。</p>
+          <span class="meta">状态：双方各执一词</span>
+        </article>
+        <article class="card">
+          <span class="kicker">现场 · 品牌</span>
+          <h3>合作官宣后翻车，评论区先热后冷</h3>
+          <p>品牌方发布合作海报数小时后撤下，未说明原因。讨论集中在选人标准与回应速度，这类黑料大赛吃瓜事件通常以一份声明收尾。</p>
+          <span class="meta">状态：官方未回应</span>
+        </article>
+        <article class="card">
+          <span class="kicker">现场 · 直播</span>
+          <h3>口误片段被截取，完整回放成关键</h3>
+          <p>短视频只保留十几秒，完整回放里前后语境不同。吃瓜时可先看原片再看剪辑，黑料大赛吃瓜网建议保留原始出处链接。</p>
+          <span class="meta">状态：有完整回放</span>
+        </article>
+        <article class="card">
+          <span class="kicker">现场 · 旧闻</span>
+          <h3>多年前访谈被翻出，与当下说法冲突</h3>
+          <p>旧访谈与新表态出现明显差异，网友按年份排列证据。旧料重提是吃瓜常见路径，但也最容易被断章取义，需要对照上下文。</p>
+          <span class="meta">状态：待当事人补充</span>
+        </article>
+        <article class="card">
+          <span class="kicker">现场 · 圈层</span>
+          <h3>粉丝与路人对同一段话理解相反</h3>
+          <p>同一条动态被两种立场解读，评论区形成两套逻辑。这类黑料大赛吃瓜往往没有结论，围观价值在于看清表达差异。</p>
+          <span class="meta">状态：持续讨论中</span>
+        </article>
+        <article class="card">
+          <span class="kicker">现场 · 平台</span>
+          <h3>账号限流传闻，官方给出规则说明</h3>
+          <p>有博主称内容被限流，平台随后列出规则条款。信息是否完整比情绪更重要，这也是黑料大赛吃瓜网整理时优先核对的部分。</p>
+          <span class="meta">状态：规则已公开</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 榜单 + 侧栏 -->
+  <section id="board" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>黑料大赛吃瓜榜单</h2>
+          <p>按围观热度排序，不做真假裁决。每一条都保留原始出处方向，方便你自己去看第一手材料。</p>
+        </div>
+      </div>
+
+      <div class="split">
+        <div class="list">
+          <a class="row" href="#hot"><span class="no">01</span><div><h3>综艺现场冲突事件</h3><p>剪辑版本与完整素材的差异，是本轮吃瓜的核心争议。</p></div><span class="badge">高热</span></a>
+          <a class="row" href="#hot"><span class="no">02</span><div><h3>品牌合作撤稿事件</h3><p>官宣到撤下不足一天，回应节奏成为讨论重点。</p></div><span class="badge">高热</span></a>
+          <a class="row" href="#hot"><span class="no">03</span><div><h3>直播口误片段</h3><p>有完整回放可对照，适合先看原片再判断。</p></div><span class="badge">上升</span></a>
+          <a class="row" href="#hot"><span class="no">04</span><div><h3>旧访谈被翻出</h3><p>时间线跨度大，旧料重提需防止断章取义。</p></div><span class="badge">上升</span></a>
+          <a class="row" href="#hot"><span class="no">05</span><div><h3>账号限流规则争议</h3><p>平台已公开条款，讨论转向规则本身。</p></div><span class="badge">平稳</span></a>
+        </div>
+
+        <aside class="side">
+          <h3>吃瓜关键词</h3>
+          <div class="tags">
+            <span>黑料大赛吃瓜网</span>
+            <span>吃瓜热点</span>
+            <span>黑料爆料</span>
+            <span>围观现场</span>
+            <span>时间线</span>
+            <span>原始出处</span>
+            <span>剪辑对比</span>
+            <span>声明回应</span>
+          </div>
+          <p class="note">提示：黑料大赛吃瓜网只做信息归拢与讨论索引，不代替事实判断。遇到只有截图没有出处的说法，先存疑再围观。</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- 围观方式 -->
+  <section id="howto">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>怎么围观一场黑料大赛吃瓜</h2>
+          <p>吃瓜也有顺序。先看材料，再看讨论，最后看回应，三步走完，基本不会被单条剪辑带偏。</p>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>三步看清一场吃瓜</h2>
+        <div>
+          <h3>第一步：找原始出处</h3>
+          <p>任何黑料大赛吃瓜都从一条材料开始，可能是一段视频、一张截图或一条动态。先确认它最早出现在哪里，是否完整，有没有被二次加工。出处不清的内容，围观时就要留出余量。</p>
+        </div>
+        <div>
+          <h3>第二步：对齐时间线</h3>
+          <p>把关键节点按日期排开，很多矛盾会自然显现。黑料大赛吃瓜网在整理时会标注事件发生、爆料出现、回应发布三个时间点，顺序错乱往往就是争议的起点。</p>
+        </div>
+        <div>
+          <h3>第三步：看回应与变化</h3>
+          <p>当事人是否回应、回应里承认了什么、回避了什么，是吃瓜后半段的主要内容。没有回应的热点会自然降温，有回应的则会进入下一轮讨论，黑料大赛吃瓜网会持续跟进状态变化。</p>
+        </div>
+        <div>
+          <h3>保持围观的基本分寸</h3>
+          <p>吃瓜是看公开讨论，不是参与人身攻击。对未经证实的说法保留判断，对已澄清的内容及时更新认知，这样的围观才不至于变成新的误传来源。</p>
+        </div>
+        <blockquote>黑料大赛吃瓜网把「热度」和「事实」分开摆放：热度告诉你大家在聊什么，事实告诉你目前能确认到哪一步。</blockquote>
+      </div>
+
+      <div style="margin-top:26px" class="searchbar">
+        <input type="search" id="kw" placeholder="输入关键词，筛选本页吃瓜条目，如：直播、综艺、品牌" aria-label="筛选本页吃瓜条目">
+        <button class="btn btn-main" id="kwBtn" type="button">筛选条目</button>
+      </div>
+      <p id="kwTip" style="font-size:13px;color:var(--muted);margin-top:10px">当前展示全部条目。</p>
+    </div>
+  </section>
+
+  <!-- 常见疑问 -->
+  <section id="faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>吃瓜常见疑问</h2>
+          <p>关于内容范围、更新节奏与信息来源，集中回答几个最常被问到的问题。</p>
+        </div>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <span class="kicker">内容范围</span>
+          <h3>黑料大赛吃瓜网收录哪些内容？</h3>
+          <p>以公开传播的吃瓜事件为主，涵盖综艺、直播、品牌合作、旧闻重提等常见类型，按事件分区整理，不收录需要付费或私域传播的材料。</p>
+        </article>
+        <article class="card">
+          <span class="kicker">更新节奏</span>
+          <h3>热点多久更新一次？</h3>
+          <p>热点榜单随讨论变化调整，状态标注会同步更新。冷却下来的事件不会立即删除，而是保留在历史条目中，方便回看时间线。</p>
+        </article>
+        <article class="card">
+          <span class="kicker">信息判断</span>
+          <h3>内容是否代表结论？</h3>
+          <p>不是。页面呈现的是讨论现状与材料方向，对未证实部分明确标注。看到单一来源的说法时，建议先找完整版本再下判断。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 下载 -->
+  <section id="download" style="padding-top:0">
+    <div class="wrap">
+      <div class="download">
+        <div>
+          <h2>下载吃瓜速览</h2>
+          <p>把本期黑料大赛吃瓜热点整理成一份速览，包含榜单条目与时间线要点，适合离线回看或转发给同样在围观的朋友。</p>
+        </div>
+        <a class="btn btn-main" href="#" download data-download-placeholder="true" aria-disabled="true" tabindex="-1">下载</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <span class="mark" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="11" r="6.4" stroke="#fff" stroke-width="2"/>
+              <circle cx="9.8" cy="10.4" r="1.2" fill="#fff"/>
+              <circle cx="14.2" cy="10.4" r="1.2" fill="#fff"/>
+              <path d="M8.5 17.5h7" stroke="#ffc94d" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          黑料大赛吃瓜网
+        </div>
+        <p>黑料大赛吃瓜网是围绕吃瓜热点做信息归拢的围观入口，按事件整理材料方向、讨论状态与回应进展，帮助你在热闹里看清脉络。</p>
+      </div>
+      <div>
+        <h4>站内导航</h4>
+        <ul>
+          <li><a href="#hot">热门吃瓜现场</a></li>
+          <li><a href="#board">黑料大赛吃瓜榜单</a></li>
+          <li><a href="#howto">围观方式</a></li>
+          <li><a href="#faq">常见疑问</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>围观提醒</h4>
+        <ul>
+          <li>先看原始出处，再看讨论</li>
+          <li>未经证实的说法保持存疑</li>
+          <li>已澄清内容及时更新认知</li>
+          <li>理性吃瓜，不参与人身攻击</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 黑料大赛吃瓜网 · 吃瓜热点围观入口</span>
+      <span>内容基于公开讨论整理，具体事实以当事人及官方信息为准</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn=document.getElementById('menuBtn');
+  var nav=document.getElementById('nav');
+  if(btn&&nav){
+    btn.addEventListener('click',function(){
+      var open=nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+    });
+  }
+
+  var input=document.getElementById('kw');
+  var run=document.getElementById('kwBtn');
+  var tip=document.getElementById('kwTip');
+  var items=[].slice.call(document.querySelectorAll('.card, .row'));
+
+  function doFilter(){
+    var q=(input.value||'').trim();
+    if(!q){
+      items.forEach(function(el){el.style.display='';});
+      tip.textContent='当前展示全部条目。';
+      return;
+    }
+    var hit=0;
+    items.forEach(function(el){
+      var ok=el.textContent.indexOf(q)>-1;
+      el.style.display=ok?'':'none';
+      if(ok)hit++;
+    });
+    tip.textContent=hit?('已筛选出 '+hit+' 条与「'+q+'」相关的吃瓜条目。'):('没有匹配「'+q+'」的条目，可试试：直播、综艺、品牌、旧闻。');
+  }
+  if(run){run.addEventListener('click',doFilter);}
+  if(input){input.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();doFilter();}});}
+})();
+</script>
+</body>
+</html>
