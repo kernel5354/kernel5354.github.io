@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>寸止挑战在线-寸止挑战在线网页版_寸止挑战计时器与玩法规则</title>
+<meta name="description" content="寸止挑战在线：一个专注于寸止挑战的在线计时工具页，提供挑战计时、节奏提示、玩法规则与难度分级说明，打开网页即可开始一轮寸止挑战。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111827'/%3E%3Ccircle cx='32' cy='32' r='19' fill='none' stroke='%23f97316' stroke-width='4' stroke-dasharray='90 30'/%3E%3Cpath d='M32 20v12l8 6' fill='none' stroke='%23fbbf24' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#111827;
+  --ink-soft:#374151;
+  --muted:#6b7280;
+  --line:#e5e7eb;
+  --bg:#f7f7f5;
+  --card:#ffffff;
+  --accent:#f97316;
+  --accent-deep:#c2410c;
+  --amber:#fbbf24;
+  --radius:16px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.75;
+  font-size:16px;
+}
+a{color:inherit;text-decoration:none;}
+img,svg{display:block;max-width:100%;}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px;}
+
+/* header */
+.site-head{
+  position:sticky;top:0;z-index:50;
+  background:rgba(247,247,245,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.head-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px;}
+.brand{display:flex;align-items:center;gap:10px;min-width:0;}
+.brand-mark{
+  width:36px;height:36px;flex:0 0 36px;border-radius:10px;
+  background:var(--ink);display:flex;align-items:center;justify-content:center;
+}
+.brand-text{font-weight:700;font-size:17px;letter-spacing:.5px;white-space:nowrap;}
+.nav{display:flex;gap:22px;font-size:15px;color:var(--ink-soft);}
+.nav a{padding:4px 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;}
+.nav a:hover{color:var(--accent-deep);border-bottom-color:var(--accent);}
+.head-cta{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--ink);color:#fff;font-size:14px;font-weight:600;
+  padding:9px 16px;border-radius:999px;white-space:nowrap;
+}
+.head-cta:hover{background:var(--accent-deep);}
+.menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:10px;padding:7px 10px;font-size:14px;color:var(--ink-soft);}
+
+/* hero */
+.hero{padding:52px 0 44px;border-bottom:1px solid var(--line);}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:600;color:var(--accent-deep);
+  background:#fff4ea;border:1px solid #fed7aa;
+  padding:5px 12px;border-radius:999px;margin-bottom:18px;
+}
+h1{
+  font-size:clamp(28px,4.4vw,42px);
+  line-height:1.25;margin:0 0 16px;letter-spacing:1px;font-weight:800;
+}
+.hero p.lead{font-size:16.5px;color:var(--ink-soft);margin:0 0 26px;max-width:34em;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--accent);color:#fff;font-weight:700;font-size:16px;
+  padding:13px 26px;border-radius:12px;box-shadow:0 6px 18px rgba(249,115,22,.28);
+  transition:background .2s,transform .2s;
+}
+.btn-primary:hover{background:var(--accent-deep);transform:translateY(-1px);}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid #d1d5db;color:var(--ink);background:#fff;
+  font-weight:600;font-size:15px;padding:12px 22px;border-radius:12px;
+}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent-deep);}
+.hero-note{font-size:13.5px;color:var(--muted);margin-top:14px;}
+
+.hero-visual{
+  background:var(--ink);border-radius:24px;padding:26px;color:#fff;
+  box-shadow:0 18px 40px rgba(17,24,39,.22);
+}
+.dial{position:relative;width:100%;aspect-ratio:1/1;max-width:260px;margin:0 auto;}
+.dial svg{width:100%;height:100%;}
+.dial-center{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:2px;
+}
+.dial-center .num{font-size:34px;font-weight:800;letter-spacing:1px;}
+.dial-center .unit{font-size:12.5px;color:#9ca3af;letter-spacing:2px;}
+.visual-caption{
+  text-align:center;font-size:13px;color:#9ca3af;margin-top:14px;letter-spacing:.5px;
+}
+
+/* sections */
+section{padding:48px 0;}
+.sec-head{margin-bottom:26px;max-width:44em;}
+.sec-tag{font-size:12.5px;font-weight:700;letter-spacing:2px;color:var(--accent-deep);text-transform:uppercase;}
+h2{font-size:clamp(21px,2.6vw,27px);margin:8px 0 10px;font-weight:800;letter-spacing:.5px;}
+.sec-head p{margin:0;color:var(--muted);font-size:15px;}
+
+/* rule cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;display:flex;flex-direction:column;gap:8px;
+}
+.card .ico{
+  width:38px;height:38px;border-radius:10px;background:#fff4ea;
+  display:flex;align-items:center;justify-content:center;margin-bottom:4px;
+}
+.card h3{font-size:16.5px;margin:0;font-weight:700;}
+.card p{margin:0;font-size:14.5px;color:var(--ink-soft);}
+
+/* timer panel */
+.panel{
+  background:var(--card);border:1px solid var(--line);border-radius:20px;
+  padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;
+}
+.timer-display{
+  background:var(--ink);border-radius:16px;padding:26px 20px;text-align:center;color:#fff;
+}
+.timer-display .t{
+  font-size:clamp(38px,7vw,54px);font-weight:800;font-variant-numeric:tabular-nums;
+  letter-spacing:2px;line-height:1.1;
+}
+.timer-display .s{font-size:13px;color:#9ca3af;letter-spacing:1px;margin-top:6px;}
+.timer-controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;justify-content:center;}
+.tbtn{
+  border:0;cursor:pointer;font-family:inherit;font-size:14.5px;font-weight:600;
+  padding:10px 20px;border-radius:10px;transition:background .2s,color .2s;
+}
+.tbtn.start{background:var(--accent);color:#fff;}
+.tbtn.start:hover{background:var(--accent-deep);}
+.tbtn.reset{background:#f3f4f6;color:var(--ink-soft);}
+.tbtn.reset:hover{background:#e5e7eb;}
+.presets{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;justify-content:center;}
+.preset{
+  border:1px solid var(--line);background:#fff;border-radius:8px;cursor:pointer;
+  font-family:inherit;font-size:13px;color:var(--ink-soft);padding:6px 12px;
+}
+.preset:hover,.preset.on{border-color:var(--accent);color:var(--accent-deep);background:#fff8f1;}
+.panel-copy h3{font-size:19px;margin:0 0 10px;font-weight:800;}
+.panel-copy p{margin:0 0 12px;font-size:15px;color:var(--ink-soft);}
+.panel-copy ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--ink-soft);}
+.panel-copy li{margin-bottom:6px;}
+
+/* levels */
+.levels{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.level{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;
+}
+.level .lv{font-size:12px;font-weight:700;letter-spacing:1.5px;color:var(--accent-deep);}
+.level h3{margin:6px 0 8px;font-size:16px;}
+.level p{margin:0;font-size:14px;color:var(--ink-soft);}
+
+/* faq */
+.faq{display:grid;gap:12px;}
+details{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;
+}
+details[open]{border-color:#fdba74;}
+summary{
+  cursor:pointer;font-weight:700;font-size:15.5px;list-style:none;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+}
+summary::-webkit-details-marker{display:none;}
+summary::after{content:"+";color:var(--accent);font-size:20px;font-weight:700;line-height:1;}
+details[open] summary::after{content:"–";}
+details p{margin:10px 0 0;font-size:14.5px;color:var(--ink-soft);}
+
+/* closing */
+.closing{
+  background:var(--ink);color:#fff;border-radius:22px;padding:38px 32px;
+  display:grid;grid-template-columns:1.3fr .7fr;gap:28px;align-items:center;
+}
+.closing h2{color:#fff;margin-top:0;}
+.closing p{color:#d1d5db;font-size:15px;margin:0 0 18px;}
+.closing .btn-primary{box-shadow:none;}
+.closing-side{font-size:13.5px;color:#9ca3af;line-height:1.9;}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:30px 0 40px;margin-top:44px;}
+.foot-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center;}
+.foot-brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;}
+.foot-links{display:flex;flex-wrap:wrap;gap:18px;font-size:13.5px;color:var(--muted);}
+.foot-links a:hover{color:var(--accent-deep);}
+.foot-note{font-size:12.5px;color:var(--muted);margin-top:14px;line-height:1.8;}
+
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:30px;}
+  .hero-visual{order:2;}
+  .cards{grid-template-columns:1fr 1fr;}
+  .levels{grid-template-columns:1fr 1fr;}
+  .panel{grid-template-columns:1fr;}
+  .closing{grid-template-columns:1fr;padding:30px 22px;}
+}
+@media (max-width:640px){
+  .head-inner{height:60px;}
+  .nav{display:none;}
+  .nav.open{
+    display:flex;position:absolute;left:0;right:0;top:60px;
+    background:#fff;flex-direction:column;gap:0;padding:8px 20px 16px;
+    border-bottom:1px solid var(--line);box-shadow:0 12px 24px rgba(0,0,0,.06);
+  }
+  .nav.open a{padding:12px 0;border-bottom:1px solid var(--line);}
+  .nav.open a:last-child{border-bottom:0;}
+  .menu-btn{display:inline-block;}
+  .head-cta{display:none;}
+  .hero{padding:34px 0 32px;}
+  .cards{grid-template-columns:1fr;}
+  .levels{grid-template-columns:1fr;}
+  section{padding:36px 0;}
+  .panel{padding:20px;}
+  .brand-text{font-size:15.5px;}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="brand" href="#top" aria-label="寸止挑战在线 首页">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="8" stroke="#f97316" stroke-width="2" stroke-dasharray="34 12" stroke-linecap="round"/>
+          <path d="M12 7.5V12l3 2" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="brand-text">寸止挑战在线</span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#rules">玩法规则</a>
+      <a href="#timer">在线计时</a>
+      <a href="#levels">难度分级</a>
+      <a href="#faq">常见问答</a>
+    </nav>
+    <a class="head-cta" href="#timer">开始一轮</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">菜单</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">在线计时 · 即时开始</span>
+        <h1>寸止挑战在线</h1>
+        <p class="lead">寸止挑战在线把这项考验节奏与自控的小挑战搬到网页里：设定时长、跟着提示保持停顿，到点再进入下一段。无需安装，打开页面就能开始一轮完整的寸止挑战。</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#timer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#fff"/></svg>
+            开始计时
+          </a>
+          <a class="btn-ghost" href="#rules">先看规则</a>
+        </div>
+        <p class="hero-note">计时在本地浏览器中运行，刷新页面即重置。</p>
+      </div>
+      <div class="hero-visual">
+        <div class="dial">
+          <svg viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="82" fill="none" stroke="#1f2937" stroke-width="14"/>
+            <circle cx="100" cy="100" r="82" fill="none" stroke="#f97316" stroke-width="14"
+              stroke-linecap="round" stroke-dasharray="386 130" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="60" fill="none" stroke="#374151" stroke-width="1.5" stroke-dasharray="3 7"/>
+          </svg>
+          <div class="dial-center">
+            <span class="num">30</span>
+            <span class="unit">SECONDS</span>
+          </div>
+        </div>
+        <p class="visual-caption">一轮寸止挑战的示意节奏</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="rules">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">Rules</span>
+        <h2>寸止挑战怎么玩</h2>
+        <p>寸止挑战的核心是“到点即停”。下面三件事决定一轮挑战是否成立，也是寸止挑战在线设置计时器的依据。</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <span class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#c2410c" stroke-width="2"/><path d="M12 8v4l2.5 1.5" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/></svg>
+          </span>
+          <h3>设定时间</h3>
+          <p>先定本轮时长，常见从 15 秒、30 秒到 60 秒。时间越短越考验反应，越长越考验耐心与节奏感。</p>
+        </article>
+        <article class="card">
+          <span class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 12h12" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/><path d="M8 8v8M16 8v8" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/></svg>
+          </span>
+          <h3>到点即止</h3>
+          <p>倒计时归零的瞬间停止当前动作并保持静止，提前停或超时都算本轮不通过，需要重新开始。</p>
+        </article>
+        <article class="card">
+          <span class="ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 17l5-5 3 3 6-7" stroke="#c2410c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3>记录与进阶</h3>
+          <p>通过一轮后进入下一档时长，形成连续记录。寸止挑战在线不保存历史成绩，建议自行记下每轮结果。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="timer">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">Timer</span>
+        <h2>在线计时面板</h2>
+        <p>选择预设时长或直接使用默认 30 秒，点击开始后按倒计时执行一轮寸止挑战。</p>
+      </div>
+      <div class="panel">
+        <div>
+          <div class="timer-display">
+            <div class="t" id="timeText" aria-live="polite">00:30</div>
+            <div class="s" id="stateText">准备就绪</div>
+          </div>
+          <div class="presets" role="group" aria-label="预设时长">
+            <button class="preset" data-sec="15" type="button">15 秒</button>
+            <button class="preset on" data-sec="30" type="button">30 秒</button>
+            <button class="preset" data-sec="60" type="button">60 秒</button>
+            <button class="preset" data-sec="120" type="button">120 秒</button>
+          </div>
+          <div class="timer-controls">
+            <button class="tbtn start" id="startBtn" type="button">开始</button>
+            <button class="tbtn reset" id="resetBtn" type="button">重置</button>
+          </div>
+        </div>
+        <div class="panel-copy">
+          <h3>让计时器替你数秒</h3>
+          <p>寸止挑战在线不替你判断动作是否标准，它只负责把时间说清楚：什么时候开始、还剩多少、什么时候必须停下。</p>
+          <ul>
+            <li>倒计时结束会给出提示音区域的状态文字，便于确认本轮结束。</li>
+            <li>切换预设时长会自动重置当前计时，避免中途改档造成混乱。</li>
+            <li>页面关闭或刷新后计时清空，成绩请自行记录。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="levels">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">Levels</span>
+        <h2>从短时长开始的分级思路</h2>
+        <p>不同时长的体感差异明显。下面四档是常见的练习顺序，可按自身情况调整，并非统一标准。</p>
+      </div>
+      <div class="levels">
+        <div class="level">
+          <span class="lv">LV.01</span>
+          <h3>15 秒 · 入门</h3>
+          <p>节奏短促，重点在听清归零那一刻，适合第一次接触寸止挑战在线的人。</p>
+        </div>
+        <div class="level">
+          <span class="lv">LV.02</span>
+          <h3>30 秒 · 熟悉</h3>
+          <p>默认档位。时间足够感受节奏，又不至于因等待而分神，适合连续多轮。</p>
+        </div>
+        <div class="level">
+          <span class="lv">LV.03</span>
+          <h3>60 秒 · 稳定</h3>
+          <p>需要更稳的呼吸与注意力，容易出现提前收手，建议先用 30 秒打底再进阶。</p>
+        </div>
+        <div class="level">
+          <span class="lv">LV.04</span>
+          <h3>120 秒 · 耐力</h3>
+          <p>长时段更看重节奏管理，适合已经能稳定完成 60 秒的人做加练。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">FAQ</span>
+        <h2>常见问答</h2>
+        <p>关于寸止挑战在线的使用方式与边界，集中回答几个高频问题。</p>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>需要注册账号才能使用吗？</summary>
+          <p>不需要。寸止挑战在线是纯网页工具，打开即可计时，不涉及登录、付费或数据上传。</p>
+        </details>
+        <details>
+          <summary>计时过程中切换预设时长会怎样？</summary>
+          <p>会立即重置当前计时并回到待开始状态。建议在一轮开始前选定档位，避免中途重置打断节奏。</p>
+        </details>
+        <details>
+          <summary>有没有结果记录或排行榜？</summary>
+          <p>当前版本不提供成绩保存、历史记录与排名功能。如需对比，可自行记录每轮时长与是否通过。</p>
+        </details>
+        <details>
+          <summary>手机上能用吗？</summary>
+          <p>可以。页面按小屏适配，计时面板、预设按钮与规则内容在手机上单列排列，触控按钮尺寸适合手指点击。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="closing">
+        <div>
+          <h2>准备好就开始一轮</h2>
+          <p>选一个你能接受的时长，按下开始，把注意力交给倒计时。寸止挑战在线的意义很简单：让每一次“停”都有明确的时刻。</p>
+          <a class="btn-primary" href="#timer">进入计时面板</a>
+        </div>
+        <div class="closing-side">
+          无需安装<br>
+          本地计时运行<br>
+          刷新即重置<br>
+          适合短时练习
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <div class="foot-brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="8" stroke="#f97316" stroke-width="2" stroke-dasharray="34 12" stroke-linecap="round"/>
+            <path d="M12 7.5V12l3 2" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        寸止挑战在线
+      </div>
+      <nav class="foot-links">
+        <a href="#rules">玩法规则</a>
+        <a href="#timer">在线计时</a>
+        <a href="#levels">难度分级</a>
+        <a href="#faq">常见问答</a>
+      </nav>
+    </div>
+    <p class="foot-note">寸止挑战在线为网页计时工具，仅提供倒计时与节奏提示，不对任何具体动作方式作指导。请量力而行，注意身体感受。</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var total = 30, remain = 30, timer = null, running = false;
+  var timeText = document.getElementById('timeText');
+  var stateText = document.getElementById('stateText');
+  var startBtn = document.getElementById('startBtn');
+  var resetBtn = document.getElementById('resetBtn');
+  var presets = document.querySelectorAll('.preset');
+
+  function fmt(s){
+    var m = Math.floor(s / 60), r = s % 60;
+    return (m < 10 ? '0' + m : m) + ':' + (r < 10 ? '0' + r : r);
+  }
+  function render(){ timeText.textContent = fmt(remain); }
+  function stop(){
+    if(timer){ clearInterval(timer); timer = null; }
+    running = false;
+    startBtn.textContent = '开始';
+  }
+  function reset(){
+    stop();
+    remain = total;
+    stateText.textContent = '准备就绪';
+    render();
+  }
+  function start(){
+    if(running) return;
+    if(remain <= 0) remain = total;
+    running = true;
+    startBtn.textContent = '暂停';
+    stateText.textContent = '进行中';
+    timer = setInterval(function(){
+      remain--;
+      if(remain <= 0){
+        remain = 0;
+        render();
+        stop();
+        stateText.textContent = '本轮结束';
+        return;
+      }
+      render();
+    }, 1000);
+  }
+  startBtn.addEventListener('click', function(){
+    if(running){ stop(); stateText.textContent = '已暂停'; }
+    else { start(); }
+  });
+  resetBtn.addEventListener('click', reset);
+  presets.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      presets.forEach(function(b){ b.classList.remove('on'); });
+      btn.classList.add('on');
+      total = parseInt(btn.getAttribute('data-sec'), 10);
+      reset();
+    });
+  });
+
+  var menuBtn = document.getElementById('menuBtn');
+  var nav = document.getElementById('nav');
+  menuBtn.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      nav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
